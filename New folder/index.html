@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+let posts =[];
+let user={
+    name:"abc",
+    lastActivetime:""
+};
+
+function createPost(a) {
+    return new Promise( (resolve, reject) => {
+        
+            posts.push(a);
+            resolve(a);
+        })
+    }
+ function updateLastUserActivityTime() {
+  return new Promise((resolve,reject)=>{
+   setTimeout(() => {
+    user.lastActivetime=new Date().getTime();
+    resolve(user.lastActivetime)
+    
+   },1000);
+
+  })
+
+
+ }  
+
+ Promise.all([createPost("POST1"),updateLastUserActivityTime()]).then(value=>console.log(`User's recent post ${value[0]} Last Active Time : ${value[1]}`))
+
+ Promise.all([createPost("POST2"),updateLastUserActivityTime()]).then(value=>console.log(`User's recent post ${value[0]} Last Active Time : ${value[1]}`))
+
+
+
+
+    </script>
+</body>
+</html>
